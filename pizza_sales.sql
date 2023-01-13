@@ -5,6 +5,18 @@ on the type, size, quantity, price, and ingredients. */
 
 use pizza_sales;
 
+--- joining all the tables 
+
+create TEMPORARY  table master_data as (
+select date,time,a.order_id, b.order_details_id,b.pizza_id, quantity, c.pizza_type_id,size,price,name,category,ingredients 
+from orders a
+join order_details b
+on a.order_id =  b.order_id 
+join pizzas c
+on b.pizza_id = c.pizza_id
+join pizza_types d 
+on c.pizza_type_id = d.pizza_type_id
+);
 
 -- number of pizza in each category  (number of combinations in the menu) 
 
